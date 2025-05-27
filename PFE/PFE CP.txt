@@ -1,0 +1,37 @@
+"""
+GOAL:
+Design the best possible Premier League team based on a given formation (e.g., 4-3-3)
+and playstyle (e.g., 'possession') by using data from FBref.com, accessed via fbrapi.com.
+
+REQUIREMENTS:
+- Use fbrapi.com to fetch player statistics from the latest Premier League season.
+- Build a weighted evaluation system for each position, depending on playstyle (e.g., prioritize Pass Completion % for CM/CDM in 'possession' style).
+- Optimize team selection using the top players in each role based on weighted scores.
+- Output the final 11 players and their roles in the chosen formation.
+
+INSTRUCTIONS:
+
+1. Install dependencies if not present:
+   pip install requests pandas
+
+2. Use the fbrapi.com endpoints (e.g., https://fbrapi.com/api/leagues/premier-league/2024) to fetch player data.
+   Refer to their documentation for endpoints and stat formats.
+
+3. Create a stat-weight map like:
+   For 'possession' playstyle:
+   - GK: Pass completion (30%), Launch% (20%), Save% (50%)
+   - CB: Pass completion (40%), Tackles (20%), Interceptions (20%), Aerials won (20%)
+   - FB: Pass completion (30%), Crosses (30%), Tackles (20%), Progressive carries (20%)
+   - CM/CDM: Pass completion (50%), Progressive passes (30%), Tackles (20%)
+   - Winger: Progressive carries (30%), Crosses (20%), Key passes (30%), Dribbles completed (20%)
+   - ST: Non-penalty goals (40%), Shots on target % (30%), xG (30%)
+
+4. Parse and normalize relevant stats to 0–1 scale.
+
+5. Score all players per position using the weighted system.
+
+6. Select top N players for each role (based on formation) with no duplicate players.
+
+7. Output the final best 11 in JSON or tabular format (Name, Position, Score, Club, Key Stats).
+
+"""
